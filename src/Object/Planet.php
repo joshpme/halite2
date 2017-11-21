@@ -2,6 +2,7 @@
 
 namespace Halite\Object;
 
+use Halite\GameMap;
 
 class Planet extends Entity {
     /**
@@ -29,6 +30,29 @@ class Planet extends Entity {
      */
     public function dockedShips() {
         return $this->dockedShips;
+    } 
+
+    /**
+     * Planet constructor.
+     * @param GameMap $gameMap
+     * @param float $id
+     * @param $health
+     * @param $x
+     * @param $y
+     * @param $radius
+     * @param null $dockingSpots
+     * @param $currentProduction
+     * @param $remainingProduction
+     * @param $dockedShips
+     * @param null $owner
+     */
+    public function __construct(GameMap $gameMap, $id, $health, $x, $y, $radius, $dockingSpots, $currentProduction, $remainingProduction, $dockedShips, $owner = null)
+    {
+        $this->dockingSpots = $dockingSpots;
+        $this->currentProduction = $currentProduction;
+        $this->remainingProduction = $remainingProduction;
+        $this->dockedShips = $dockedShips;
+        parent::__construct($gameMap, $id, $health, $x, $y, $radius, $owner);
     }
 
     /**

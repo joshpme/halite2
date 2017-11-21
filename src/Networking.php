@@ -1,27 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Josh
- * Date: 16/11/2017
- * Time: 7:20 PM
- */
 
 namespace Halite;
-
 
 class Networking
 {
     /**
      * Read output data from game
      *
-     * @return string
+     * @return array
      */
     public function read() {
         $input = fgets(STDIN);
         if ($input === false) {
             exit();
         }
-        return rtrim($input);
+        return explode(" ",rtrim($input));
     }
 
     /**

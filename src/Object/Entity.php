@@ -2,6 +2,7 @@
 
 namespace Halite\Object;
 
+use Halite\GameMap;
 use Halite\Player;
 
 class Entity extends Circle {
@@ -54,7 +55,17 @@ class Entity extends Circle {
         return $this->gameMap;
     }
 
-    public function __construct($gameMap, $id, $health, $x, $y, $radius, $owner = null) {
+    /**
+     * Entity constructor.
+     * @param GameMap $gameMap
+     * @param float $id
+     * @param $health
+     * @param $x
+     * @param $y
+     * @param $radius
+     * @param null $owner
+     */
+    public function __construct(GameMap $gameMap, $id, $health, $x, $y, $radius, $owner = null) {
         $this->gameMap = $gameMap;
         $this->id = $id;
         $this->health = $health;

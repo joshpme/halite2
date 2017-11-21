@@ -2,7 +2,6 @@
 
 namespace Halite;
 
-
 use Halite\Object\Entity;
 use Halite\Object\Planet;
 use Halite\Object\Ship;
@@ -45,6 +44,7 @@ class GameMap
 
     public function addPlayer($id) {
         $this->players[$id] = new Player($id, $this);
+        return $this->players[$id];
     }
 
     public function addPlanet(Planet $planet) {
@@ -102,7 +102,7 @@ class GameMap
 
     public function enemyShips() {
         $ships = array();
-        foreach ($this->ships() as $ship) {
+        foreach ($this->ships as $ship) {
             if ($ship->owner() !== $this->me()) {
                 $ships[] = $ship;
             }

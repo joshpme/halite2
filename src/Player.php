@@ -1,4 +1,5 @@
 <?php
+
 namespace Halite;
 
 use Halite\Object\Planet;
@@ -27,8 +28,16 @@ class Player {
         $this->gameMap = $gameMap;
     }
 
+    public function id() {
+        return $this->id;
+    }
+
     public function ships() {
         return $this->ships;
+    }
+
+    public function ship($id) {
+        return $this->ships[$id];
     }
 
     public function planets() {
@@ -36,12 +45,12 @@ class Player {
     }
 
     public function addShip(Ship $ship) {
-        $this->ships[] = $ship;
+        $this->ships[$ship->id()] = $ship;
         $ship->setOwner($this);
     }
 
     public function addPlanet(Planet $planet) {
-        $this->planets[] = $planet;
+        $this->planets[$planet->id()] = $planet;
         $planet->setOwner($this);
     }
 }

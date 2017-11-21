@@ -2,9 +2,10 @@
 
 namespace Halite\Object;
 
-
+use Halite\GameMap;
 use Halite\Geometry;
 use Halite\Halite;
+use Halite\Player;
 
 class Ship extends Entity {
 
@@ -48,9 +49,9 @@ class Ship extends Entity {
      */
     protected $weaponCooldown;
 
-    public function __construct($gameMap, $owner, $id, $x, $y, $radius) {
+    public function __construct(GameMap $gameMap, Player $owner, $id, $x, $y, $health,$dockingStatus, $dockedPlanetId, $dockingProgress, $weaponCooldown) {
         $this->dockingStatus = Halite::UNDOCKED;
-        parent::__construct($gameMap, $id, Halite::BASE_SHIP_HEALTH, $x, $y, $radius, $owner);
+        parent::__construct($gameMap, $id, $health, $x, $y, 0.5, $owner);
     }
 
     public function dockingStatus() {
