@@ -8,6 +8,7 @@ class Game
      * @var Networking
      */
     private $network;
+
     /**
      * @var GameMap
      */
@@ -22,6 +23,7 @@ class Game
      * @var integer
      */
     private $width;
+
     /**
      * @var integer
      */
@@ -36,12 +38,17 @@ class Game
         $this->network = new Networking();
     }
 
+    /**
+     * @return GameMap
+     */
+    public function map() {
+        return $this->gameMap;
+    }
+
     public function init() {
         list($this->playerId) = $this->network->read();
         list($this->width, $this->height) = $this->network->read();
-
         $parser = new GameMapParser($this->playerId, $this->width, $this->height);
-
         $this->gameMap = $parser->parse($this->network->read());
         $this->turn = 0;
     }

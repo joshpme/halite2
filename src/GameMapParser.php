@@ -98,7 +98,10 @@ class GameMapParser {
             "dockedPlanetId",
             "dockingProgress",
             "weaponCooldown");
+
         for ($i = 0; $i < $ships; $i++) {
+
+
             $info = array();
             foreach ($params as $param) {
                 $info[$param] = array_shift($data);

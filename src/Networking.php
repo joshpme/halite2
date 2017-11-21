@@ -11,10 +11,11 @@ class Networking
      */
     public function read() {
         $input = fgets(STDIN);
+
         if ($input === false) {
             exit();
         }
-        return explode(" ",rtrim($input));
+        return explode(" ",trim($input));
     }
 
     /**

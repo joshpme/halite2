@@ -11,30 +11,32 @@ class GameMap
     /**
      * @var integer
      */
-    protected $myId;
+    private $myId;
+
     /**
      * @var integer
      */
-    protected $width;
+    private $width;
+
     /**
      * @var integer
      */
-    protected $height;
+    private $height;
 
     /**
      * @var Planet[]
      */
-    protected $planets;
+    private $planets;
 
     /**
      * @var Ship[]
      */
-    protected $ships;
+    private $ships;
 
     /**
      * @var Player[]
      */
-    protected $players;
+    private $players;
 
     public function __construct($myId, $width, $height) {
         $this->myId = $myId;
@@ -79,6 +81,9 @@ class GameMap
         return $this->players;
     }
 
+    /**
+     * @return Player
+     */
     public function me() {
         return $this->players[$this->myId];
     }

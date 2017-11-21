@@ -11,15 +11,15 @@ class Player {
     /**
      * @var integer
      */
-    protected $id;
+    public $id;
     /**
      * @var Ship[]
      */
-    protected $ships;
+    public $ships;
     /**
      * @var Planet[]
      */
-    protected $planets;
+    public $planets;
 
     public function __construct($id, $gameMap) {
         $this->id = $id;

@@ -137,7 +137,7 @@ class Ship extends Entity {
         return $output;
     }
 
-    public function navigate(Point $target, $speed, $keepDistanceToTarget = 0, $ignoreShips = false, $ignorePlanets = false) {
+    public function navigate(Point $target, $speed = Halite::MAX_SPEED, $keepDistanceToTarget = 0, $ignoreShips = false, $ignorePlanets = false) {
 
         $destination = Geometry::pointOnLine($this,$target,$speed);
         $deviation = 0;
