@@ -114,10 +114,4 @@ class GameMap
         }
         return $ships;
     }
-
-    public function obstaclesBetween(array $obstacles, Ship $ship, Entity $target) {
-        $obstacles = array_filter($obstacles, function($obstacle) use ($ship) {
-            return ($obstacle !== $ship);
-        });
-    }
 }

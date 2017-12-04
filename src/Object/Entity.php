@@ -84,4 +84,16 @@ class Entity extends Circle {
     public function setOwner($owner) {
         $this->owner = $owner;
     }
+
+
+    public function obstaclesBetween(Point $target) {
+        $obstacles = array();
+        $obstacles += $this->gameMap()->ships();
+        $obstacles += $this->gameMap()->planets();
+        $ship = $this;
+        $obstacles = array_filter($obstacles, function($obstacle) use ($ship) {
+            return ($obstacle !== $ship);
+        });
+        return $obstacles;
+    }
 };

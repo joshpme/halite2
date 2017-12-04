@@ -54,9 +54,11 @@ class Geometry {
         $angleDegree = self::angleInDegree($start, $end);
 
         $newAngleDegree = $angleDegree + $degreeDelta;
+
         $newAngleRad = self::toRad($newAngleDegree);
-        $x = cos($newAngleRad) * $distance;
-        $y = sin($newAngleRad) * $distance;
+
+        $x = $start->x() + cos($newAngleRad) * $distance;
+        $y = $start->y() + sin($newAngleRad) * $distance;
 
         return new Point($x, $y);
     }

@@ -31,11 +31,11 @@ class GeometryTest extends PHPUnit_Framework_TestCase {
     }
 
     public function test_rotate_end() {
-        $start = new Point(0,0);
+        $start = new Point(5,5);
         $end = new Point(10,10);
-        $destination = Geometry::rotateEnd($start,$end, 180);
-        $this->assertEquals(-10, $destination->x());
-        $this->assertEquals(-10, $destination->y());
+        $destination = Geometry::rotateEnd($start,$end, 90);
+        $this->assertEquals(0, $destination->x());
+        $this->assertEquals(10, $destination->y());
     }
 
     public function test_degree_to_rad() {

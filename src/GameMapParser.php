@@ -14,7 +14,12 @@ class GameMapParser {
      * @param integer $height
      */
     public function __construct($playerId, $width, $height) {
+        $this->id = rand(0,1000);
         $this->map = new GameMap($playerId, $width, $height);
+    }
+
+    public function log($message, $data) {
+       // file_put_contents("/srv/examplebot/output" . $this->id . ".txt",$message . "\n" . implode(" ", $data) . "\n", FILE_APPEND);
     }
 
     /**
@@ -29,6 +34,8 @@ class GameMapParser {
 
     private function players($data) {
         $players = array_shift($data);
+
+        $this->log("Players: " . $players, $data);
 
         for ($i = 0; $i < $players; $i++) {
             $playerId = array_shift($data);
@@ -53,6 +60,7 @@ class GameMapParser {
             "ownerId",
             "totalShips");
 
+        $this->log("Planets: " . $planets, $data);
         for ($i = 0; $i < $planets; $i++) {
             $info = array();
             foreach ($params as $param) {
@@ -98,7 +106,7 @@ class GameMapParser {
             "dockedPlanetId",
             "dockingProgress",
             "weaponCooldown");
-
+        $this->log("Ships: " . $ships, $data);
         for ($i = 0; $i < $ships; $i++) {
 
 

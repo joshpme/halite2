@@ -137,40 +137,40 @@ class Ship extends Entity {
         return $output;
     }
 
-    public function navigate(Point $target, $speed = Halite::MAX_SPEED, $keepDistanceToTarget = 0, $ignoreShips = false, $ignorePlanets = false) {
-
-        $destination = Geometry::pointOnLine($this,$target,$speed);
+    public function navigate(Point $target, $speed = Halite::MAX_SPEED, $keepDistanceToTarget = 0) {
         $deviation = 0;
-
         if ($this->distanceBetween($target) + $keepDistanceToTarget < $speed) {
             $speed = $this->distanceBetween($target) + $keepDistanceToTarget;
         }
 
+        $destination = Geometry::pointOnLine($this,$target,$speed);
+        $altered = clone $destination;
+        $direction = -5;
         while ($deviation < 180) {
-            $obstacles = array();
-            if (!$ignorePlanets) {
-                $obstacles += $this->gameMap()->planetsBetween($this, $target);
-            }
-            if (!$ignoreShips) {
-                $obstacles += $this->gameMap()->shipsBetween($this, $target);
-            }
+            $obstacles = $this->obstaclesBetween($target);
+
 
             $valid = true;
             foreach ($obstacles as $obstacle) {
-                if (Geometry::intersectsSegmentCircle($this, $destination, $obstacle)) {
+                if (Geometry::intersectsSegmentCircle($this, $altered, $obstacle)) {
                     $valid = false;
                     break;
                 }
             }
-
             if ($valid) {
+                $this->action = self::ACTION_THRUST;
                 $this->speed = $speed;
-                $this->direction = Geometry::angleInDegree($this,$destination);
+                $this->direction = Geometry::angleInDegree($this,$altered);
                 return;
             }
 
-            $deviation += 10;
-            $destination = Geometry::rotateEnd($this, $destination, $deviation);
+            $deviation += $direction;
+            if ($deviation < -180) {
+                $direction *= -1;
+                $deviation = 0;
+            }
+
+            $altered = Geometry::rotateEnd($this, $destination, $deviation);
         }
     }
 };
